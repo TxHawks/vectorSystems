@@ -1,0 +1,296 @@
+// *************************************
+//
+//   $Buttons
+//
+// *************************************
+
+
+
+// -------------------------------------
+// Base
+// -------------------------------------
+
+
+// 1. Basic cosmetics for default buttons.
+// 2. Normalise box model styles.
+// 3. Force all .btn elements to appear clickable.
+// 4. Allow us to better style box model properties.
+// 5. Make buttons inherit font styles.
+// 6. Line different sized buttons up a little nicer.
+// 7. Stop buttons wrapping and looking broken.
+// 8. Don’t allow buttons to have underlines
+%btn-proto{
+  background-color:$brand-color;
+  border-radius:$base-round;  // [1]
+  border:none;                // [2]
+  color:$text-color--invert; 
+  cursor:pointer;             // [3]
+  display:inline-block;       // [4]
+  font-family:inherit;        // [5]
+  outline : none;
+  padding-top:0;              // [2]
+  padding-bottom:0;           // [2]
+  vertical-align:middle;      // [6]
+  white-space:nowrap;         // [7]
+  &,
+  &:hover{
+    text-decoration:none;     // [8]
+  }
+  &:active,
+  &:focus{
+    outline:none;
+  }
+  &:hover,
+  &:active,
+  &:focus{
+    background-color:$brand-color--b;
+  }
+  &::-moz-focus-inner{
+    border:0;
+    padding:0;
+  }
+}
+  
+
+// 1. Generate font-size in REMs with PX fallback.
+// 2. Set height and unitless line-height that 
+//     keeps the vertical rythm.
+// 3. Set horizontal padding that plays nice with 
+//     the vertical rhythm
+%btn,.btn{
+  @extend %btn-proto;
+  @include rem(font-size,$milli-size);     // [1]
+  @include rhythm-values(height,5);        // [2]
+  @include line-height(5,$milli-size);     // [2]
+  padding-left:rhythm(2,$milli-size,em);   // [3]
+  padding-right:rhythm(2,$milli-size,em);  // [3]
+}
+
+
+
+
+
+// -------------------------------------
+// Modifiers
+// -------------------------------------
+
+
+// ----- Button spacing modifiers ----- //
+// ** for use with .btn only, not it's size modifiers ** //
+
+%btn--tight,.btn--tight{
+  @include rhythm-values(height,4);           
+  @include line-height(4,$milli-size);     
+  padding-left:rhythm(1,$milli-size,em);   
+  padding-right:rhythm(1,$milli-size,em);  
+}
+
+
+%btn--loose,.btn--loose{
+  @include rhythm-values(height,6);           
+  @include line-height(6,$milli-size);     
+  padding-left:rhythm(3,$milli-size,em);   
+  padding-right:rhythm(3,$milli-size,em);  
+}
+
+
+
+// ----- Full width button ----- //
+
+// This button will fill the entirety of their container.
+// 1. Remove padding so that text can fill the whole width.
+%btn--full,.btn--full{
+  width:100%;
+  padding-right:0;            // [1]
+  padding-left: 0;            // [1]
+  text-align:center;
+}
+
+
+
+// ----- Inline button ----- //
+
+%btn--inline,.btn--inline{
+  vertical-align:baseline;
+  font-size:inherit;
+  line-height:inherit;
+  padding-left:rhythm(1);   
+  padding-right:rhythm(1);  
+}
+
+
+
+// ----- Button font-size modifiers ----- //
+%btn--large,.btn--large{
+  @extend %btn-proto;
+  @include rem(font-size, $base-font-size);    
+  @include rhythm-values(height,4);            
+  @include line-height(4,$base-font-size);     
+  padding-left:rhythm(2,$base-font-size,em);   
+  padding-right:rhythm(2,$base-font-size,em);  
+}
+
+
+%btn--huge,.btn--huge{
+  @extend %btn-proto;
+  @include rem(font-size, $h4-size);    
+  @include rhythm-values(height,6);            
+  @include line-height(6,$h4-size);     
+  padding-left:rhythm(3,$h4-size,em);   
+  padding-right:rhythm(3,$h4-size,em);
+}
+
+
+%btn--mega,.btn--mega{
+  @extend %btn-proto;
+  @include rem(font-size, $h2-size);    
+  @include rhythm-values(height,8);            
+  @include line-height(8,$h2-size);     
+  padding-left:rhythm(4,$h2-size,em);   
+  padding-right:rhythm(4,$h2-size,em);
+}
+
+
+
+// ----- States ----- //
+
+// Inactive, disabled buttons.
+// 1. Make the button look like normal text when hovered.
+%btn--inactive,.btn--inactive{
+&,
+  &:hover,
+  &:active,
+  &:focus{
+    background-color:$disable-color;
+    color:$text-color--b;
+    cursor:text;                      // [1]
+  }
+}
+
+
+// Negative actions; e.g. close account, delete photo, remove friend, etc.
+%btn--negative,.btn--negative{
+  background-color:$negative-color;
+  color:#fff;
+  &:hover,
+  &:active,
+  &:focus{
+    background-color:lighten($negative-color,10%);
+  }
+}
+
+
+// Positive actions; e.g. sign in, purchase, submit, etc.
+%btn--positive,.btn--positive{
+  background-color:$positive-color;
+  color:#fff;
+  &:hover,
+  &:active,
+  &:focus{
+    background-color:lighten($positive-color,10%);
+  }
+}
+
+
+//Text button
+@include class(btn--text){
+	background-color: transparent;
+	border:none;
+  color: inherit;
+  display:inline-block;
+  padding:0;
+  &:hover,
+  &:active,
+  &:focus{
+    background-color: transparent;
+  }
+}
+
+// ----- Color modifiers ----- //
+
+//Sales
+%btn--a,.btn--a{
+  background-color:$sales-color;
+  color:#fff;
+  &:hover,
+  &:active,
+  &:focus{
+    background-color:darken($sales-color,4%)
+  }
+}
+
+
+// ----- Shape modifiers ----- //
+
+// Round button
+%btn--soft,.btn--soft{
+  border-radius:50%;        
+}
+
+
+// Hard-edged button
+%btn--hard,.btn--hard{
+  border-radius:0;
+}
+  
+  
+// ----- Icon buttons ---- //  
+%btn--icn-proto{
+  background-color: transparent;
+  border:0;
+  cursor:pointer;
+  display:inline-block;
+  padding:0;
+  position:relative;
+  text-align:center;
+  vertical-align:middle;
+}
+  
+  
+%btn--icn,.btn--icn{
+  @extend %btn--icn-proto;
+  @include rem(height,42px);
+  @include rem(line-height,42px);
+  @include rem(min-width,44px);
+}
+
+
+//icons in collapssed header
+%btn--icn--b,.btn--icn--b,{
+  @extend %btn--icn-proto;
+  @include rem(height,46px);
+  @include rem(line-height,46px);
+  @include rem(min-width,44px);
+}
+
+%btn--icn--c,.btn--icn--c,{
+  @extend %btn--icn-proto;
+  @include rem(height,36px);
+  @include rem(line-height,36px);
+  @include rem(min-width,36px);
+}
+
+  
+%btn--icn--d,.btn--icn--d,{
+  @extend %btn--icn-proto;
+  @include rem(height,24px);
+  @include rem(line-height,24px);
+  @include rem(min-width,24px);
+}
+
+
+@include class(btn--icn__text){
+  color:$brand-color;
+  font-weight:700;
+  //vertical-align:middle;
+}
+
+
+
+// -------------------------------------
+// STATES
+// -------------------------------------
+
+.btn--icn.is-disabled{
+	color:$disable-color;
+}

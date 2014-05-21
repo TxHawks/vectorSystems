@@ -1,0 +1,91 @@
+// *************************************
+//
+//   $ICON
+//   Base styles for using icon fonts
+//
+// *************************************
+// Populates element with icon fonts 
+// through a `data-icon` attribute and 
+// the `:after` pseudo-element. 
+// Example:
+//
+//  <a href=#>
+//    <i class=icn data-icon="$" aria-hidden="true"></i> 
+//    <span class="icn__alt">Share on facebook</span>
+//  </a>
+//
+// Where "$" is mapped to a specific icon in your icon font.
+// and the content "icn__alt" class isn't visible but 
+// is read by screen readers and placed for accessibility.
+
+@mixin icn($font-size,$dimensions){
+  @if  unitless($font-size) {$font-size:$font-size*1px;}
+  @else if  unit($font-size) == rem {$font-size:$font-size*$base-font-size/1rem;}
+  @else if  unit($font-size) != px {@warn "Paremeter $font-size must resolve to a value in pixel units.";}
+  
+  @if  unitless($dimensions) {$dimensions:$dimensions*1px;}
+  @else if  unit($dimensions) == rem {$dimensions:$dimensions*$base-font-size/1rem;}
+  @else if  unit($dimensions) == em {$dimensions:$dimensions*$font-size/1em;}
+  @else if  unit($dimensions) != px {@warn "Paremeter $dimensions must resolve to a value in pixel units.";}
+  @include rem(font-size,$font-size);
+  @include rem(height,$dimensions);
+  @include rem(line-height,$dimensions);
+  @include rem(width,$dimensions);
+}
+
+
+
+
+
+[data-icon]{
+  display:inline-block;
+  font-style:normal;                    
+  text-align:center;                    
+  &:before{
+    content:attr(data-icon);       	
+    font-family:icon;
+  	font-weight:normal!important;  
+    speak:none;                           
+    -webkit-font-smoothing:antialiased;
+    -moz-osx-font-smoothing:grayscale;
+  }
+	@include  respond-to($m-start){
+	   &:before{
+	     content:attr(data-icon2);
+	   }
+	}
+}
+
+
+%icn{
+  background-color:$brand-color--d;
+	border-radius:50%;
+	color:$background-color;
+}
+.icn{
+  @extend %icn;
+  @include icn(40,80);
+    @include  respond-to($m-start){
+	@include icn(80px,160);
+  }
+}
+
+.icn--b{
+  @extend %icn;
+  @include icn(40,60);
+  @include  respond-to($m-start){
+    @include icn(40,120);
+  }
+}
+
+
+%icn__alt,.icn__alt{
+  border:0;
+  clip:rect(0 0 0 0);
+  height:1px;
+  margin:-1px;
+  overflow:hidden;
+  padding:0;
+  position:absolute;
+  width:1px;
+}

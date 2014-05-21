@@ -1,0 +1,63 @@
+// *************************************
+//
+//   $RESET
+//   A more considered reset; more of a restart...
+//   Based on: csswizardry.com/2011/10/reset-restarted
+//
+// *************************************
+@if $global-border-box == true{
+  // Set box-sizing to border-box
+  *{
+    &,
+    &:before,
+    &:after{
+      box-sizing:border-box;
+    }
+  }
+}
+
+
+// Normalize margins and paddings
+h1,h2,h3,h4,h5,h6,
+p,blockquote,pre,dl,
+form,fieldset,legend,
+table,th,td,caption,
+hr{
+    margin:0;
+    padding:0;
+}
+
+// Give a help cursor to elements that give extra info on `:hover`.
+abbr[title],dfn[title]{
+  cursor:help;
+}
+
+// Remove underlines from potentially troublesome elements.
+u,ins{
+  text-decoration:none;
+}
+
+// Apply faux underline via `border-bottom`.
+ins{
+  border-bottom:1px solid;
+}
+
+// So `alt` text to be visually different if images don’t load.
+img{
+  font-style:italic;
+}
+
+// Give form elements some cursor interactions...
+label,
+input,
+textarea,
+button,
+select,
+option{
+  cursor:pointer;
+}
+  textarea:active,
+  textarea:focus{
+    cursor:text;
+    outline:none;
+  }

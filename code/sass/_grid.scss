@@ -1,0 +1,390 @@
+// *************************************
+//
+//  $GRID
+//
+// *************************************
+
+// -------------------------------------
+//   Variables
+// -------------------------------------
+
+$grid-columns: 12 !default;
+$grid-gutter: $base-spacing-unit !default;
+$grid-tight: $three-qurats-spacing-unit !default;
+$grid-xtight: $half-spacing-unit !default;
+$grid-xxtight: $quarter-spacing-unit !default;
+$grid-silent: false !default;
+
+
+
+
+
+// -------------------------------------
+//   Selector Type
+// -------------------------------------
+
+$grid-selector: if($grid-silent, unquote("%"), unquote("."));
+
+
+
+
+
+// -------------------------------------
+//   Base
+// -------------------------------------
+
+// 1. Remove inter-cell whitespace that appears 
+//    between `inline-block` child elements.
+// 2. Lists can be grids too.
+// 3. Negative margins to eliminate spacing on on
+//    first and last child instances of "grid__cell"s.
+// 4. Ensure consistent default alignment of cells.
+#{$grid-selector}g {
+  display:block;
+  font-size:0;                                     // [1]
+  list-style:none;                                 // [2]
+  @include rem(margin-left, -($grid-gutter / 2));  // [3]
+  @include rem(margin-right, -($grid-gutter / 2)); // [3]
+  text-align:right;                                // [4]
+}
+
+
+
+
+
+// -------------------------------------
+//   Modifiers
+// -------------------------------------
+
+// ----- Set up responsive modifiers ----- //
+
+@mixin mods($namespace:""){
+  // ----- Alignment modifiers ----- //
+  // Center align cells
+  #{$grid-selector}g#{$namespace}--center{
+    text-align:center;
+    > #{$grid-selector}g__cell{
+      text-align:right;
+    }
+  }
+
+
+  // Left align cells
+  #{$grid-selector}g#{$namespace}--left{
+    text-align:left;
+    > #{$grid-selector}g__cell{
+      text-align:right;
+    }
+  }
+
+
+  // Reversed grid
+  // items 1, 2, 3, 4 in the markup will
+  // be displayed 4, 3, 2, 1 on the page
+  #{$grid-selector}g#{$namespace}--rev{
+    direction:ltr;
+    text-align:left;
+    > #{$grid-selector}g__cell{
+      direction:rtl;
+      text-align:right;
+    }
+  }
+
+
+  // Middle-align grid cells
+  #{$grid-selector}g#{$namespace}--middle{
+    > #{$grid-selector}g__cell{
+      vertical-align:middle;
+    }
+  }
+
+
+  // Bottom-align grid cells
+  #{$grid-selector}g#{$namespace}--bottom{
+    > #{$grid-selector}g__cell{
+      vertical-align: bottom;
+    }
+  }
+
+
+  // ----- Spacing modifiers ----- //
+  #{$grid-selector}g#{$namespace}--tight{
+    @include rem(margin-left, -$grid-tight / 2);
+    @include rem(margin-right, -$grid-tight / 2);
+    > #{$grid-selector}g__cell{
+      @include rem(padding-left,$grid-tight / 2);
+      @include rem(padding-right,$grid-tight / 2);
+    }
+  }
+
+  #{$grid-selector}g#{$namespace}--xtight{
+    @include rem(margin-left, -$grid-xtight / 2);
+    @include rem(margin-right, -$grid-xtight / 2);
+    > #{$grid-selector}g__cell{
+      @include rem(padding-left,$grid-xtight / 2);
+      @include rem(padding-right,$grid-xtight / 2);
+    }
+  }
+
+  #{$grid-selector}g#{$namespace}--xxtight{
+    @include rem(margin-left, -$grid-xxtight / 2);
+    @include rem(margin-right, -$grid-xxtight / 2);
+    > #{$grid-selector}g__cell{
+      @include rem(padding-left,$grid-xxtight / 2);
+      @include rem(padding-right,$grid-xxtight / 2);
+    }
+  }
+
+  #{$grid-selector}g#{$namespace}--flush{
+    margin-left:0;
+    margin-right:0;
+    > #{$grid-selector}g__cell{
+      padding-left:0;
+      padding-right:0;
+    }
+  }
+}
+
+
+
+// ----- Create responsive modifiers ----- //
+
+@include mods;
+
+@each $break in $BPs {
+  @include bp(#{$break}){
+    @include mods("--#{$break}");
+  }
+}
+
+
+// -------------------------------------
+//   Items
+// -------------------------------------
+
+// Size independent grid cell. Use in conjunction
+// with namespaced size classes bellow
+// 1. Required for fluid widths and fixed gutters.
+// 2. Undo font-size change made in `Grid`.
+// 3. Establish a non-float grid system, which
+//    allows vertical alignment of content.
+//    Cause columns to stack side-by-side.
+// 4. Create a half-gutter on each side.
+//    This allows us to add column rules.
+// 5. Align columns to the tops of each other.
+// 6. Full width unless modified with width-trumps.
+#{$grid-selector}g__cell {
+  @if not $global-border-box{box-sizing:border-box;} // [1]
+  @include rem(font-size, $base-font-size);          // [2]
+  display:inline-block;                              // [3]
+  padding-left:$grid-gutter / 2;                     // [4]
+  padding-right:$grid-gutter / 2;                    // [4]
+  vertical-align:top;                                // [5]
+  width:100%;                                        // [6]
+}
+
+
+// ----- Modifiers ----- //
+
+#{$grid-selector}g__cell--center {
+  display:block;
+  float: none;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+
+
+
+
+// -------------------------------------
+//   Width trumps setup
+// -------------------------------------
+
+@mixin cells($namespace: "") {
+  // ----- One Part ----- //
+  #{$grid-selector}g__#{$namespace}1of1{
+    width: 100%;
+  }
+  
+  
+  // ----- Two Parts ----- //
+  #{$grid-selector}g__#{$namespace}1of2 {
+    width: 50%;
+  }
+  
+  
+  // ----- Three Parts ----- //
+  @if $grid-columns >= 3 {
+    #{$grid-selector}g__#{$namespace}1of3 {
+      width: 33.333%;
+    }
+    #{$grid-selector}g__#{$namespace}2of3 {
+      width: 66.666%;
+    }
+  }
+  
+  
+  // ----- Four Parts ----- //
+  @if $grid-columns >= 4 {
+    #{$grid-selector}g__#{$namespace}1of4 {
+      width:25%;
+    }
+    #{$grid-selector}g__#{$namespace}2of4 {
+      @extend #{$grid-selector}g__#{$namespace}1of2;
+    }
+    #{$grid-selector}g__#{$namespace}3of4 {
+      width:75%;
+    }
+  }
+
+
+  // ----- Five Parts ----- //
+  @if $grid-columns >= 5 {
+    #{$grid-selector}g__#{$namespace}1of5 {
+      width: 20%;
+    }
+    #{$grid-selector}g__#{$namespace}2of5 {
+      width: 40%;
+    }
+    #{$grid-selector}g__#{$namespace}3of5 {
+      width: 60%;
+    }
+    #{$grid-selector}g__#{$namespace}4of5 {
+      width: 80%;
+    }
+  }
+
+
+  // ----- Six Parts ----- //
+  @if $grid-columns >= 6 {
+    #{$grid-selector}g__#{$namespace}1of6 {
+      width: 16.666%;
+    }
+    #{$grid-selector}g__#{$namespace}2of6 {
+      @extend #{$grid-selector}g__#{$namespace}1of3;
+    }
+    #{$grid-selector}g__#{$namespace}3of6 {
+      @extend #{$grid-selector}g__#{$namespace}1of2;
+    }
+    #{$grid-selector}g__#{$namespace}4of6 {
+      @extend #{$grid-selector}g__#{$namespace}2of3;
+    }
+    #{$grid-selector}g__#{$namespace}5of6 {
+      width: 83.333%;
+    }
+  }
+
+
+  // ----- Eight Parts ----- //
+  @if $grid-columns >= 8 {
+    #{$grid-selector}g__#{$namespace}1of8 {
+      width: 12.5%;
+    }
+    #{$grid-selector}g__#{$namespace}2of8 {
+      @extend #{$grid-selector}g__#{$namespace}1of4;
+    }
+    #{$grid-selector}g__#{$namespace}3of8 {
+      width: 37.5%;
+    }
+    #{$grid-selector}g__#{$namespace}4of8 {
+      @extend #{$grid-selector}g__#{$namespace}1of2;
+    }
+    #{$grid-selector}g__#{$namespace}5of8 {
+      width: 62.5%;
+    }
+    #{$grid-selector}g__#{$namespace}6of8 {
+      @extend #{$grid-selector}g__#{$namespace}3of4;
+    }
+    #{$grid-selector}g__#{$namespace}7of8 {
+      width: 87.5%;
+    }
+  }
+
+
+  // ----- Ten Parts ----- //
+  @if $grid-columns >= 10 {
+    #{$grid-selector}g__#{$namespace}1of10 {
+      width: 10%;
+    }
+    #{$grid-selector}g__#{$namespace}2of10 {
+      @extend #{$grid-selector}g__#{$namespace}1of5;
+    }
+    #{$grid-selector}g__#{$namespace}3of10 {
+      width: 30%;
+    }
+    #{$grid-selector}g__#{$namespace}4of10 {
+      @extend #{$grid-selector}g__#{$namespace}2of5;
+    }
+    #{$grid-selector}g__#{$namespace}5of10 {
+      @extend #{$grid-selector}g__#{$namespace}1of2;
+    }
+    #{$grid-selector}g__#{$namespace}6of10 {
+      @extend #{$grid-selector}g__#{$namespace}3of5;
+    }
+    #{$grid-selector}g__#{$namespace}7of10 {
+      width: 70%;
+    }
+    #{$grid-selector}g__#{$namespace}8of10 {
+      @extend #{$grid-selector}g__#{$namespace}4of5;
+    }
+    #{$grid-selector}g__#{$namespace}9of10 {
+      width: 90%;
+    }
+  }
+
+
+  // ----- Twelve Parts ----- //
+  @if $grid-columns >= 12 {
+    #{$grid-selector}g__#{$namespace}1of12 {
+      width: 8.333%;
+    }
+    #{$grid-selector}g__#{$namespace}2of12 {
+      @extend #{$grid-selector}g__#{$namespace}1of6;
+    }
+    #{$grid-selector}g__#{$namespace}3of12 {
+      @extend #{$grid-selector}g__#{$namespace}1of4;
+    }
+    #{$grid-selector}g__#{$namespace}4of12 {
+      @extend #{$grid-selector}g__#{$namespace}1of3;
+    }
+    #{$grid-selector}g__#{$namespace}5of12 {
+      width: 41.666%;
+    }
+    #{$grid-selector}g__#{$namespace}6of12 {
+      @extend #{$grid-selector}g__#{$namespace}1of2;
+    }
+    #{$grid-selector}g__#{$namespace}7of12 {
+      width: 58.333%;
+    }
+    #{$grid-selector}g__#{$namespace}8of12 {
+      @extend #{$grid-selector}g__#{$namespace}2of3;
+    }
+    #{$grid-selector}g__#{$namespace}9of12 {
+      @extend #{$grid-selector}g__#{$namespace}3of4;
+    }
+    #{$grid-selector}g__#{$namespace}10of12 {
+      @extend #{$grid-selector}g__#{$namespace}5of6;
+    }
+    #{$grid-selector}g__#{$namespace}11of12 {
+      width: 91.666%;
+    }
+  }
+}
+
+
+
+
+
+// -------------------------------------
+//   Create responsive width trumps
+// -------------------------------------
+
+
+@include cells;
+
+@each $break in $BPs {
+  @include bp(#{$break}){
+    @include cells("#{$break}-");
+  }
+}

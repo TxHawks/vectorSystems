@@ -1,0 +1,23 @@
+// *************************************
+//
+//   $MAIN
+//   Unstyled elements
+//
+// *************************************
+
+
+// 1. Set base font-size/line-height
+// 2. Fill at least the full height of the screen 
+
+html{
+  min-height:100%;              // [2]
+}
+
+
+
+body{
+  background-color:$brand-color--b;
+  color:$text-color--invert;
+  height:100%;
+  font-family:$base-font-family;
+}

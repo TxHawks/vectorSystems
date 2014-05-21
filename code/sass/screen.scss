@@ -1,0 +1,156 @@
+@charset "UTF-8";
+// *************************************
+//
+//   All styles here
+//
+// *************************************
+
+
+// -------------------------------------
+//   $IMPORTS
+// -------------------------------------
+
+@import "compass";
+@import "defaults";
+@import "font";
+
+
+@import "mixin";
+@import "rhythm";
+@import "normalize";
+@import "reset";
+@import "helper";
+
+@import "main";
+@import "grid";
+@import "image";
+
+@import "icon";
+//@import "button";
+
+
+
+
+// -------------------------------------
+//   $INBOX
+// -------------------------------------
+// The inbox allows developers, and those not 
+// highly familiar with the CSS, to quickly add 
+// styles that are easily seen, refactored and 
+// assigned to partials by the maintainer of the file
+
+.wrapper,.svg-computer{
+position:absolute;
+top:50%; left:50%;
+transform:translate(-50%,-50%);
+text-align:center;
+}
+
+.wrapper--b{
+  width:50%;
+  @include bp(m){
+    width:40%;
+  }
+  @include bp(l){
+    width:30%;
+  }
+}
+
+
+
+%icn~h1{
+  opacity:0;
+  transition: all $base-animation-timing;
+}
+
+%icn:hover~h1{
+  @include  respond-to($m-start){
+    opacity:1;
+  }
+}
+
+.icn,.icn--b{
+  margin-bottom:0.25em;
+  transition: all $base-animation-timing;
+  box-shadow:0 0 10px -5px $light-gray;
+  &:hover{
+    background-color:$background-color;
+	color:$brand-color--d;
+	box-shadow:inset 0 0 10px $light-gray;;
+  }
+}
+
+.svg-computer{
+@extend %h-animable;
+  @include rem(height,250px);
+  @include rem(width,250px);
+  @include bp(m){
+	  @include rem(height,400px);
+	  @include rem(width,400px);
+  }
+  @include bp(l){
+	  @include rem(height,750px);
+	  @include rem(width,750px);
+  }
+}
+
+
+
+.computer__details{
+  @extend %h-animable;
+  opacity:1;
+  @include bp(s){
+    opacity:0
+  }
+}
+
+
+.computer__details__small{
+  @extend %h-animable;
+  opacity:1;
+  @include bp(m){
+    opacity:0;
+  }
+}
+
+.svg-audio,.svg-battery{
+  @include rem(margin,10px);
+  @include rem(width,40px);
+  @include rem(height,40px);
+  @include bp(l){
+    @include rem(margin,20px);
+  }
+}
+
+.svg-battery{
+  float:right;
+  transition:all 1s;
+  &:hover{
+    transition: all 2s;
+  }
+}
+
+  .battery__charge {
+    fill:$positive-color;
+    @include bp(l){
+      fill:$negative-color;
+    }
+  }
+
+.svg-audio{
+  float:left;
+  stroke:$text-color;
+  stroke-width:2;
+  transition:all 1s;
+  &:hover{
+    transition:all 2s;
+    stroke:$orange;
+    stroke-width:3;
+  }
+}
+
+@keyframe battery{
+  0%		{fill:$negative-color;}
+  50%	{fill:orange;}
+  100%	{fill:$positive-color;}
+}

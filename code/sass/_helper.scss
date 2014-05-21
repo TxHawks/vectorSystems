@@ -1,0 +1,423 @@
+// *************************************
+//
+//   $Helpers
+//
+// *************************************
+//   Extend these placeholder classes with to avoid
+//   them appearing extensively in your markup.
+
+
+// -------------------------------------
+//   $CLEARFIX
+// -------------------------------------
+%h-group,.h-group{
+    &:after{
+        clear:both;
+        content:"";
+        display:table;
+    }
+}
+
+
+
+
+
+// -------------------------------------
+//   $ELLIPSIS
+// -------------------------------------
+%h-ellipsis {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+
+
+
+
+// -------------------------------------
+//   $VISIBILITY
+// -------------------------------------
+%h-ir {
+  font: 0/0 serif;
+  text-shadow: none;
+  color: transparent;
+}
+
+@mixin hide($namespace: ""){
+  @include class(h-hidden#{$namespace}){
+    display:none!important;
+  }
+}
+
+@include hide;
+
+@each $break in $BPs{
+  @include bp($break){
+    @include hide(--#{$break})
+  }
+}
+
+@include class(h-visually-hidden){
+  border:0;
+  clip:rect(0 0 0 0);
+  height:1px;
+  margin:-1px;
+  overflow:hidden;
+  padding:0;
+  position:absolute;
+  width:1px;
+}
+%h-fauxHide{
+  height:0;
+  opacity:0;
+  overflow:hidden;
+  visibility:hidden;
+}
+
+@include class(h-op0){
+	opacity: 0;	
+}
+
+@include class(h-op1){
+	opacity: 1;	
+}
+
+
+
+
+
+// -------------------------------------
+//   $SPACING
+// -------------------------------------
+// Margin and padding helper classes. Use these to tweak layout on a micro
+// .(m|p)[t|r|b|l|e|s]--[spacing modifiers]--[breakpoint]  -->
+// (margin/padding)[top/right/bottom/left/ends/sides][tight/xtight/xxtight/loose/xloose]
+// example:
+//   .me--xtight{
+//	    margin-top:12px;
+//	    margin-top:0.75rem;
+//		margin-bottom:12px;
+//		margin-bottom:0.75rem;
+//   }
+@mixin space($namespace:""){
+
+  // ----- Margins ----- //
+
+  // ** Normal ** //
+  @include class(h-m#{$namespace}){
+    @include rhythm-values(margin,4);
+  }
+
+  @include class(h-mt#{$namespace}){
+    @include rhythm-values(margin-top,4);
+  }
+
+  @include class(h-ml#{$namespace}){
+    @include rhythm-values(margin-left,4);
+  }
+
+  @include class(h-mb#{$namespace}){
+    @include rhythm-values(margin-bottom,4);
+  }
+
+  @include class(h-mr#{$namespace}){
+    @include rhythm-values(margin-right,4);
+  }
+
+  @include class(h-me#{$namespace}){
+    @include rhythm-values(margin-bottom,4);
+    @include rhythm-values(margin-top,4);
+  }
+
+  @include class(h-ms#{$namespace}){
+    @include rhythm-values(margin-right,4);
+    @include rhythm-values(margin-left,4);
+  }
+
+  // ** Tight ** //
+  @include class(h-m--tight#{$namespace}){
+    @include rhythm-values(margin,3);
+  }
+
+  @include class(h-mt--tight#{$namespace}){
+    @include rhythm-values(margin-top,3);
+  }
+
+  @include class(h-ml--tight#{$namespace}){
+    @include rhythm-values(margin-left,3);
+  }
+
+  @include class(h-mb--tight#{$namespace}){
+    @include rhythm-values(margin-bottom,3);
+  }
+
+  @include class(h-mr--tight#{$namespace}){
+    @include rhythm-values(margin-right,3);
+  }
+
+  @include class(h-me--tight#{$namespace}){
+    @include rhythm-values(margin-bottom,3);
+    @include rhythm-values(margin-top,3);
+  }
+
+  @include class(h-ms--tight#{$namespace}){
+    @include rhythm-values(margin-right,3);
+    @include rhythm-values(margin-left,3);
+  }
+
+  // ** XTight ** //
+  @include class(h-m--xtight#{$namespace}){
+    @include rhythm-values(margin,2);
+  }
+
+  @include class(h-mt--xtight#{$namespace}){
+    @include rhythm-values(margin-top,2);
+  }
+
+  @include class(h-ml--xtight#{$namespace}){
+    @include rhythm-values(margin-left,2);
+  }
+
+  @include class(h-mb--xtight#{$namespace}){
+    @include rhythm-values(margin-bottom,2);
+  }
+
+  @include class(h-mr--xtight#{$namespace}){
+    @include rhythm-values(margin-right,2);
+  }
+
+  @include class(h-me--xtight#{$namespace}){
+    @include rhythm-values(margin-bottom,2);
+    @include rhythm-values(margin-top,2);
+  }
+
+  @include class(h-ms--xtight#{$namespace}){
+    @include rhythm-values(margin-right,2);
+    @include rhythm-values(margin-left,2);
+  }
+
+
+  // ** XXTight ** //
+  @include class(h-m--xxtight#{$namespace}){
+    @include rhythm-values(margin,1);
+  }
+
+  @include class(h-mt--xxtight#{$namespace}){
+    @include rhythm-values(margin-top,1);
+  }
+
+  @include class(h-ml--xxtight#{$namespace}){
+    @include rhythm-values(margin-left,1);
+  }
+
+  @include class(h-mb--xxtight#{$namespace}){
+    @include rhythm-values(margin-bottom,1);
+  }
+
+  @include class(h-mr--xxtight#{$namespace}){
+    @include rhythm-values(margin-right,1);
+  }
+
+  @include class(h-me--xxtight#{$namespace}){
+    @include rhythm-values(margin-bottom,1);
+    @include rhythm-values(margin-top,1);
+  }
+
+  @include class(h-ms--xxtight#{$namespace}){
+    @include rhythm-values(margin-right,1);
+    @include rhythm-values(margin-left,1);
+  }
+
+
+  // ----- loose ----- //
+  @include class(h-m--loose#{$namespace}){
+    @include rhythm-values(margin,6);
+  }
+
+  @include class(h-mt--loose#{$namespace}){
+    @include rhythm-values(margin-top,6);
+  }
+
+  @include class(h-ml--loose#{$namespace}){
+    @include rhythm-values(margin-left,6);
+  }
+
+  @include class(h-mb--loose#{$namespace}){
+    @include rhythm-values(margin-bottom,6);
+  }
+
+  @include class(h-mr--loose#{$namespace}){
+    @include rhythm-values(margin-right,6);
+  }
+
+  @include class(h-me--loose#{$namespace}){
+    @include rhythm-values(margin-bottom,6);
+    @include rhythm-values(margin-top,6);
+  }
+
+  @include class(h-ms--loose#{$namespace}){
+    @include rhythm-values(margin-right,6);
+    @include rhythm-values(margin-left,6);
+  }
+
+
+  // ----- Xloose ----- //
+  @include class(h-m--xloose#{$namespace}){
+    @include rhythm-values(margin,8);
+  }
+
+  @include class(h-mt--xloose#{$namespace}){
+    @include rhythm-values(margin-top,8);
+  }
+
+  @include class(h-ml--xloose#{$namespace}){
+    @include rhythm-values(margin-left,8);
+  }
+
+  @include class(h-mb--xloose#{$namespace}){
+    @include rhythm-values(margin-bottom,8);
+  }
+
+  @include class(h-mr--xloose#{$namespace}){
+    @include rhythm-values(margin-right,8);
+  }
+
+  @include class(h-me--xloose#{$namespace}){
+    @include rhythm-values(margin-bottom,8);
+    @include rhythm-values(margin-top,8);
+  }
+
+  @include class(h-ms--xloose#{$namespace}){
+    @include rhythm-values(margin-right,8);
+    @include rhythm-values(margin-left,8);
+  }
+
+
+  // ----- flush ----- //
+  @include class(h-m--flush#{$namespace}){
+    margin:0;
+  }
+
+  @include class(h-mt--flush#{$namespace}){
+    margin-top:0;
+  }
+
+  @include class(h-ml--flush#{$namespace}){
+    margin-left:0;
+  }
+
+  @include class(h-mb--flush#{$namespace}){
+    margin-bottom:0;
+  }
+
+  @include class(h-mr--flush#{$namespace}){
+    margin-right:0;
+  }
+
+  @include class(h-me--flush#{$namespace}){
+    margin-bottom:0;
+    margin-top:0;
+  }
+
+  @include class(h-ms--flush#{$namespace}){
+    margin-left:0;
+    margin-right:0;
+  }
+}
+
+
+@include space;
+
+@each $break in $BPs {
+  @include bp(#{$break}){
+      @include space("--#{$break}");
+  }
+}
+
+
+
+
+
+// -------------------------------------
+//   $FLOATS
+// -------------------------------------
+@include class(h-fl){
+  float: left;
+}
+
+@include class(h-fr){
+  float: right;
+}
+
+@include class(h-cb){
+  clear:both;
+}
+
+
+
+
+
+// -------------------------------------
+//   $DISPLAY
+// -------------------------------------
+
+@include class(h-di){
+	display:inline;
+}
+
+@include class(h-db){
+	display:block;
+}
+
+@include class(h-dib){
+	display:inline-block;
+}
+
+
+
+
+
+// -------------------------------------
+//   $ANIMATIONS
+// -------------------------------------
+
+@include class(h-animable){
+	transition: all $base-animation-timing;
+}
+
+
+
+
+// -------------------------------------
+//   $POSITION
+// -------------------------------------
+
+@include class(h-posr){
+	position:relative;
+}
+
+@include class(h-posa){
+	position:absolute;
+}
+
+@include class(h-posf){
+	position:fixed;
+}
+
+
+
+
+
+// -------------------------------------
+//   $WRAPPERS
+// -------------------------------------
+// weapper for centered elements
+// 1. center element
+// 2. center inline content within element
+@include class(h-wrapper--centered){
+  display:block;
+  margin-left:auto;     // [1]
+  margin-right:auto;    // [1]
+  text-align: center;   // [2]
+}

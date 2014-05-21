@@ -1,0 +1,183 @@
+// *************************************
+//
+//   $MIXINS
+//
+// *************************************
+
+
+
+// -------------------------------------
+//   Class Generator
+// -------------------------------------
+// Generates a class and placeholder-class in one go.
+@mixin class($class-name){
+  %#{$class-name},.#{$class-name}{@content;}
+}
+
+// -------------------------------------
+//   Media Query related mixins 
+// -------------------------------------
+
+
+// ----- Retina images ----- //
+// Generate an automatic retina version of a background image
+// Use:
+// div{
+//   background-image: logo.png;
+//   background-size: image-width(logo.png) image-height(logo.png);
+//   @include retina-image(logo@2x.png);
+// }
+//
+// ** @import "compass" -> required ** //
+@mixin retina-image($img) {
+  @if ($MQs) {
+    @media (-webkit-min-device-pixel-ratio: 1.5), (min-resolution: 144dpi) {
+      background-image: image-url($img);
+      background-size: image-width($img) / 2 image-height($img) / 2;
+    }
+  }
+}
+
+
+// ----- Custom media quries ----- //
+// generate costume media queries on the fly. 
+
+// Use:
+// @include respond-to(landscape, orientation){ styles here }
+
+// Use with care.
+
+
+@mixin respond-to($val, $query: min-width, $media: screen) {
+  @if ($MQs) {
+    @media #{$media} and ($query: $val) {
+      @content;
+    }
+  }
+}
+
+
+// ----- Break points ----- //
+// A simple media query mixin for pre defined breakpoints. 
+// The options (set by the break-point variables) are:
+// s-and-m  ---> both small and medium screens
+// s        ---> small screens
+// m        ---> medium screens
+// l        ---> large screens
+// xl        ---> extra-large screens
+
+// ** Not using a media query will ** //
+// ** serve styles to all devices. ** //
+
+//Use:
+// `@include bp(s){ styles here }`
+
+
+@mixin bp($media-query){
+
+  @if $media-query == s-and-m{
+    @if ($MQs) {
+      @media only screen and (max-width:em($m-end)) { @content; }
+    }
+
+  }
+
+  @if $media-query == s{
+    @if ($MQs) {
+      @media only screen and (max-width:em($s-end)) { @content; }
+    }
+  }
+
+  @if $media-query == m{
+    @if ($MQs) {
+      @media only screen and 
+        (min-width:em($m-start)) and 
+        (max-width:em($m-end)) { 
+          @content; 
+      }
+    }
+  }
+
+  @if $media-query == l{
+    @if ($MQs) {
+      @media only screen and (min-width:em($l-start)) { @content; }
+    } @else {
+      @content;
+    }
+  }
+
+  @if $media-query == xl{
+    @if ($MQs) {
+      @media only screen and (min-width:em($xl-start)) { @content; }
+    }
+  }
+}
+
+
+
+
+
+// -------------------------------------
+//   IE classes
+// -------------------------------------
+
+// Serve classes only to Explorer 8 and down
+// using this mixin
+
+$old-ie:false!default;
+@mixin old-ie {
+  @if $old-ie {
+    @content;
+  }
+}
+
+
+
+
+
+// -------------------------------------
+//   Heading styler
+// -------------------------------------
+
+// Style any number of headings in one go, e.g.:
+//
+// .foo{
+//   @include headings(1, 3){
+//     color:#BADA55;
+//   }
+//  }
+
+@mixin headings($from: 1, $to: 6){
+    %base-heading {
+        @content
+    }
+
+    @if $from >= 1 and $to <= 6{
+        @for $i from $from through $to{
+            h#{$i}{
+                @extend %base-heading;
+            }
+        }
+    }
+}
+
+
+
+
+
+// -------------------------------------
+//   Line truncation with ellipsis
+// -------------------------------------
+
+// Force long spans of text to truncate, e.g.:
+//
+// `@include ellipsis(100%);`
+//
+// `$truncation-boundary` is a united measurement.
+
+@mixin ellipsis($truncation-boundary:100%){
+    max-width:$truncation-boundary;
+    overflow:hidden;
+    text-overflow:ellipsis;
+    white-space:nowrap;
+}

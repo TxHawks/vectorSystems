@@ -1,0 +1,173 @@
+// *************************************
+//
+//   $FONTS
+//   Conditionals for loading webfonts
+//
+// *************************************
+
+@if $webfonts == true{
+    
+  // Open-Sans Regular
+  @if $webfonts-opensans == true{
+    @font-face {
+      font-family:'Open Sans Hebrew';
+      font-style: normal;
+      font-weight: 400;
+      src: url("http://themes.googleusercontent.com/static/fonts/earlyaccess/opensanshebrew/v1/OpenSansHebrew-Regular.eot");
+      src: url("http://themes.googleusercontent.com/static/fonts/earlyaccess/opensanshebrew/v1/OpenSansHebrew-Regular.eot?#iefix") format('embedded-opentype'), url("http://themes.googleusercontent.com/static/fonts/earlyaccess/opensanshebrew/v1/OpenSansHebrew-Regular.woff2") format('woff2'), url("http://themes.googleusercontent.com/static/fonts/earlyaccess/opensanshebrew/v1/OpenSansHebrew-Regular.woff") format('woff'), url("http://themes.googleusercontent.com/static/fonts/earlyaccess/opensanshebrew/v1/OpenSansHebrew-Regular.ttf") format('truetype');
+    }
+
+    // Force chrome to load SVG for better rendering  
+    @media screen and (-webkit-min-device-pixel-ratio:0) {
+      @font-face {
+        font-style: normal;
+        font-weight: 400;
+        font-family: "Open Sans Hebrew";
+        src: url("fonts/opensanshebrew-regular.svg#open_sans_hebrewregular") format("svg");
+      }
+    }
+  }
+
+  
+  
+  // Open-Sans Bold
+  @if $webfonts-opensans-b == true{
+
+    @font-face {
+      font-family:'Open Sans Hebrew';
+      font-style: normal;
+      font-weight: 700;
+      src: url(http://themes.googleusercontent.com/static/fonts/earlyaccess/opensanshebrew/v1/OpenSansHebrew-Bold.eot);
+      src: url(http://themes.googleusercontent.com/static/fonts/earlyaccess/opensanshebrew/v1/OpenSansHebrew-Bold.eot?#iefix) format('embedded-opentype'), url(http://themes.googleusercontent.com/static/fonts/earlyaccess/opensanshebrew/v1/OpenSansHebrew-Bold.woff2) format('woff2'), url(http://themes.googleusercontent.com/static/fonts/earlyaccess/opensanshebrew/v1/OpenSansHebrew-Bold.woff) format('woff'), url(http://themes.googleusercontent.com/static/fonts/earlyaccess/opensanshebrew/v1/OpenSansHebrew-Bold.ttf) format('truetype');
+    }
+  
+    // Force chrome to load SVG for better rendering  
+    @media screen and (-webkit-min-device-pixel-ratio:0) {
+      @font-face {
+        font-style: normal;
+        font-weight: 700;
+        font-family: "open sans hebrew";
+        src: url("fonts/opensanshebrew-bold.svg#open_sans_hebrewbold") format("svg");
+      }
+    }
+  }
+  
+  
+  
+  // Open-Sans Italic
+  @if $webfonts-opensans-i == true{
+  	@font-face {
+      font-family:'Open Sans Hebrew';
+      font-style: italic;
+      font-weight: 400;
+      src: url("http://themes.googleusercontent.com/static/fonts/earlyaccess/opensanshebrew/v1/OpenSansHebrew-Italic.eot");
+      src: url("http://themes.googleusercontent.com/static/fonts/earlyaccess/opensanshebrew/v1/OpenSansHebrew-Italic.eot?#iefix") format('embedded-opentype'), url("http://themes.googleusercontent.com/static/fonts/earlyaccess/opensanshebrew/v1/OpenSansHebrew-Italic.woff2") format('woff2'), url("http://themes.googleusercontent.com/static/fonts/earlyaccess/opensanshebrew/v1/OpenSansHebrew-Italic.woff") format('woff'), url("http://themes.googleusercontent.com/static/fonts/earlyaccess/opensanshebrew/v1/OpenSansHebrew-Italic.ttf") format('truetype');
+    }
+  
+    // Force chrome to load SVG for better rendering  
+    @media screen and (-webkit-min-device-pixel-ratio:0) {
+      @font-face {
+        font-style: italic;
+        font-weight: 400;
+        font-family: "Open Sans Hebrew";
+        src: url("fonts/opensanshebrew-italic.svg#open_sans_hebrewitalic") format("svg");
+      }
+    }
+  }
+
+  
+  
+  // Open-Sans Bold Italic
+  @if $webfonts-opensans-b-i == true{
+    @font-face {
+      font-family:'Open Sans Hebrew';
+      font-style: italic;
+      font-weight: 700;
+      src: url("http://themes.googleusercontent.com/static/fonts/earlyaccess/opensanshebrew/v1/OpenSansHebrew-BoldItalic.eot");
+      src: url("http://themes.googleusercontent.com/static/fonts/earlyaccess/opensanshebrew/v1/OpenSansHebrew-BoldItalic.eot?#iefix") format('embedded-opentype'), url("http://themes.googleusercontent.com/static/fonts/earlyaccess/opensanshebrew/v1/OpenSansHebrew-BoldItalic.woff2") format('woff2'), url(http://themes.googleusercontent.com/static/fonts/earlyaccess/opensanshebrew/v1/OpenSansHebrew-BoldItalic.woff) format('woff'), url(http://themes.googleusercontent.com/static/fonts/earlyaccess/opensanshebrew/v1/OpenSansHebrew-BoldItalic.ttf) format('truetype');
+    }
+  
+    // Force chrome to load SVG for better rendering  
+    @media screen and (-webkit-min-device-pixel-ratio:0) {
+      @font-face {
+        font-style: italic;
+        font-weight: 700;
+        font-family: "Open Sans Hebrew";
+        src: url("fonts/opensanshebrew-bolditalic.svg#open_sans_hebrewbold_italic") format("svg");
+      }
+    }
+  }
+
+  
+  
+  // Open-Sans Light
+  @if $webfonts-opensans-light == true{
+    @font-face {
+      font-family:'Open Sans Hebrew';
+      font-style: normal;
+      font-weight: 300;
+      src: url("http://themes.googleusercontent.com/static/fonts/earlyaccess/opensanshebrew/v1/OpenSansHebrew-Light.eot");
+      src: url("http://themes.googleusercontent.com/static/fonts/earlyaccess/opensanshebrew/v1/OpenSansHebrew-Light.eot?#iefix") format('embedded-opentype'),
+      url("http://themes.googleusercontent.com/static/fonts/earlyaccess/opensanshebrew/v1/OpenSansHebrew-Light.woff2") format('woff2'),
+      url("http://themes.googleusercontent.com/static/fonts/earlyaccess/opensanshebrew/v1/OpenSansHebrew-Light.woff") format('woff'),
+      url("http://themes.googleusercontent.com/static/fonts/earlyaccess/opensanshebrew/v1/OpenSansHebrew-Light.ttf") format('truetype');
+    }
+  
+    // Force chrome to load SVG for better rendering
+    @media screen and (-webkit-min-device-pixel-ratio:0) {
+      @font-face {
+        font-style: normal;
+        font-weight: 300;
+        font-family: "Open Sans Hebrew";
+        src: url("fonts/opensanshebrew-light.svg#open_sans_hebrewligh") format("svg");
+      }
+    }
+  }
+  
+  
+  
+  // Open-Sans Light Italic
+  @if $webfonts-opensans-light-i == true{
+    @font-face {
+      font-family:'Open Sans Hebrew';
+      font-style: italic;
+      font-weight: 300;
+      src: url("http://themes.googleusercontent.com/static/fonts/earlyaccess/opensanshebrew/v1/OpenSansHebrew-LightItalic.eot");
+      src: url("http://themes.googleusercontent.com/static/fonts/earlyaccess/opensanshebrew/v1/OpenSansHebrew-LightItalic.eot?#iefix") format('embedded-opentype'),
+        url("http://themes.googleusercontent.com/static/fonts/earlyaccess/opensanshebrew/v1/OpenSansHebrew-LightItalic.woff2") format('woff2'),
+      url("http://themes.googleusercontent.com/static/fonts/earlyaccess/opensanshebrew/v1/OpenSansHebrew-LightItalic.woff") format('woff'),
+      url("http://themes.googleusercontent.com/static/fonts/earlyaccess/opensanshebrew/v1/OpenSansHebrew-LightItalic.ttf") format('truetype');
+    }
+  
+    // Force chrome to load SVG for better rendering  
+    @media screen and (-webkit-min-device-pixel-ratio:0) {
+      @font-face {
+        font-family: "Open Sans Hebrew";
+        src: url("fonts/opensanshebrew-lightitalic.svg#open_sans_hebrewlight_italic") format("svg");
+      }
+    }
+  }
+  
+  
+  
+  
+  // Icons Font
+  @if $webfonts-htzIcons == true{
+    @font-face {
+      font-family: "icon";
+      src: 	url(fonts/icon.eot);
+      src: 	url("fonts/icon.eot?#iefix") format("embedded-opentype"),
+            url("fonts/icon.woff") format("woff"),
+            url("fonts/icon.ttf") format("truetype"), 
+            url("fonts/icon.svg#icon") format("svg");
+    }
+  
+    // Force chrome to load SVG for better rendering  
+    @media screen and (-webkit-min-device-pixel-ratio:0) {
+      @font-face {
+        font-family: "icon";
+        src: url("fonts/icon.svg#icon") format("svg");
+      }
+    }
+  }
+}

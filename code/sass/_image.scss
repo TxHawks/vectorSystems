@@ -1,0 +1,39 @@
+// *************************************
+//
+//   $IMAGES
+//   Base styles for images
+//
+// *************************************
+
+
+// Fluid images.
+img{
+    max-width:100%;
+}
+
+
+
+// Non-fluid images if you specify `width` and/or `height` attributes.
+img[width],
+img[height]{
+    max-width:none;
+}
+
+
+
+// Images in `figure` elements.
+figure > img{
+    display:block;
+}
+
+[data-picture]{
+  img{
+	width:100%;
+	display:block;
+  }
+  &.h-di{
+    img{
+   	  display:inline;
+    }
+  }
+}

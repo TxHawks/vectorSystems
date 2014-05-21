@@ -1,0 +1,53 @@
+// *************************************
+//
+//   $TYPOGRAPHY
+//   Base styles for headings
+//
+// *************************************
+
+
+// -------------------------------------
+//   $HEADLINES
+// -------------------------------------
+// Defines each heading tag along a corresponding class,
+// which allows a double-stranded heading hierarchy. e.g:
+// <h3 class='alpha'>
+
+h1,h2,h3,h4,h5,h6{
+  font-weight:700;
+
+}
+
+h1,.t-alpha,%t-alpha{
+    @include font-size($h1-size);
+}
+h2,.t-beta,%t-beta{
+    @include font-size($h2-size);
+}
+h3,.t-gamma,%t-gamma{
+    @include font-size($h3-size);
+}
+h4,.t-delta, %t-delta {
+    @include font-size($h4-size);
+}
+h5,.t-epsilon,%t-epsilon{
+    @include font-size($h5-size);
+}
+h6,.t-zeta,%t-zeta{
+    @include font-size($h6-size);
+}
+
+
+// Classes for setting massive type; for use
+// in heroes, mastheads, promos, etc.
+.t-giga,%t-giga{
+    @include font-size($giga-size);
+}
+.t-mega,%t-mega{
+    @include font-size($mega-size);
+}
+.t-kilo,%t-kilo{
+    @include font-size($kilo-size);
+}
+
+

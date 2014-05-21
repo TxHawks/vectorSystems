@@ -1,0 +1,293 @@
+// *************************************
+//
+//   $DEFAULTS
+//   Styling variables
+//
+// *************************************
+
+
+
+// -------------------------------------
+//   $SETTINGS
+// -------------------------------------
+
+// ----- Box-sizing ----- //
+// Set box-sizing to border-box?
+$global-border-box:true!default;
+
+
+// ----- webfonts -----//
+// Enable webfonts (and a firefox hack)
+$webfonts:                        true!default;
+
+// Webfonts loading defaults. 
+$webfonts-opensans:               true!default;
+$webfonts-opensans-b:             true!default;
+$webfonts-opensans-i:             true!default;
+$webfonts-opensans-b-i:           true!default;
+$webfonts-opensans-light:         false!default;
+$webfonts-opensans-light-i:       false!default;
+$webfonts-htzIcons:               true!default;
+
+// ----- debug ----- //
+// Debug mode will visually highlight any potential 
+// markup/accessibility quirks in the browser.
+$debug-mode:false!default;
+
+
+// -------------------------------------
+//   $TYPOGRAPHY
+// -------------------------------------
+// Font-sizes (in pixels).
+
+// Base font size. Should be the same as 
+// the font-size of the html element.
+$base-font-size:    16px;
+
+// Extra large sizes
+$giga-size:         96px!default;
+$mega-size:         72px!default;
+$kilo-size:         48px!default;
+
+// Heading sizes
+$h1-size:           36px!default;            // .alpha
+$h2-size:           30px!default;            // .beta
+$h3-size:           24px!default;            // .gamma
+$h4-size:           20px!default;            // .delta
+$h5-size:           18px!default;            // .epsilon
+$h6-size:           $base-font-size!default; // .zeta
+
+// Small sizes
+$milli-size:        14px!default;
+$micro-size:        12px!default;
+
+
+
+$base-font-family:  'Open Sans Hebrew', arial, helvetica, sans-serif!default;
+$brand-face:        $base-font-family!default;  
+
+
+
+
+
+// -------------------------------------
+//   $VERTICAL RHYTHM
+// -------------------------------------
+
+// Assign the `$base-line-height` to a new
+// spacing var for more transparency.
+
+// a base vertical rhythm of six to avoid excessive leading
+$base-line-height:  6px; 
+
+$base-spacing-unit: $base-line-height*4;
+$three-qurats-spacing-unit: $base-spacing-unit / 1.3333333;
+$half-spacing-unit: $base-spacing-unit / 2;
+$quarter-spacing-unit: $base-spacing-unit / 4;
+
+$line-height-ratio: ($base-line-height * 4) / $base-font-size;
+
+
+// ----- Settings variables ----- //
+// Affect the vertical rhythm mixins
+
+// The length unit in which to output rhythm values.
+// Supported values: PX, EM, REM.
+// * Percent units not supported * //
+$rhythm-unit:rem;
+
+// Output fallback values in px when using rem as the rhythm-unit?
+$rem-with-px-fallback: true;
+
+// Default values for rhythm borders properties.
+// Style supports style (eg. `solid`) or list of style and color (eg. `solid #aaa`);
+$default-rhythm-border-width: 1px;
+$default-rhythm-border-style: solid;
+
+// Allows the `adjust-font-size-to` mixin and the `lines-for-font-size` function
+// to round the line height to the nearest half line height instead of the
+// nearest integral line height to avoid large spacing between lines.
+$round-to-nearest-half-line:false;
+
+// Ensure there is at least this many pixels
+// of vertical padding above and below the text.
+$min-line-padding:2px;
+
+
+
+
+
+// -------------------------------------
+//   $COLORS
+// -------------------------------------
+
+$haaretz-blue:    rgb(9, 165, 217);            // brand color #09A5D9
+$marker-green:    rgb(188, 192, 0);            // Marker brand color
+$marker-green--b: rgb(23, 118, 90);            // Marker alt color
+
+$red:             rgb(233, 33, 52)!default;
+$green:           rgb(74, 153, 62)!default;
+$orange:          rgb(250, 100, 0)!default;
+
+$darkest-gray:    rgb(34, 34, 34)!default;     // text
+$darker-gray:     rgb(44, 44, 44)!default;     // #2C2C2C
+$dark-gray:       rgb(53, 53, 53)!default;     
+$gray:            rgb(90, 90, 90)!default;     // #5A5A5A
+$light-gray:      rgb(178, 178, 178)!default;  
+$lighter-gray:    rgb(204, 204, 204)!default;  
+$very-light-gray: rgb(243, 243, 243)!default;  
+$lightest-gray:   rgb(245, 245, 240)!default;
+
+$white:           #fff;
+
+
+
+// ----- Brand colors ----- //
+
+$brand-color:     $haaretz-blue!default;
+
+$brand-color--b:  desaturate(lighten($brand-color, 24%), 26%)!default; // #79c9e4 used for hover state, etc
+$brand-color--c:  desaturate(lighten($brand-color, 15%), 18%)!default; // #4abee4 used for top bar
+$brand-color--d:  desaturate(lighten($brand-color, 15%), 32%)!default; // #d6ebf2 used for color bgs (i.e. op-eds)
+$brand-color--e:  darken($brand-color, 14%)!default;                   // #067194 darkened brand color
+
+$alt-color: $red!default;
+
+
+// ----- Text colors ----- //
+
+$text-color:           $darkest-gray!default;
+$text-color--b:        $gray!default;          // credit, comment number, story-teasers
+$text-color--c:        $light-gray!default;   // credit, comment number, story-teasers
+$text-color--d:        $lighter-gray!default; // picture credit
+$text-color--invert:   $white!default;
+
+
+// ----- Background colors ----- //
+
+$background-color:     $white!default;
+$background-color--b:  $lightest-gray!default;    // body background color
+$background-color--c:  $very-light-gray!default;  // sidebar background
+$background-color--d:  $darker-gray!default;      // dark backgrounds
+$background-color--e:  $dark-gray!default;        // 2nd level dark backgrounds
+
+
+// ----- UI colors ----- //
+
+$base-ui-color:         $light-gray!default;    // border colors, etc
+$base-ui-color--sel:    $light-gray!default;
+
+$ad-rule-color:         $lighter-gray!default;
+$shadow-color:          $gray!default;
+$disable-color:         $lighter-gray!default;
+$positive-color:        $green!default;
+$negative-color:        $red!default;
+$sales-color:           $orange!default;
+
+$facebook-color:   rgb(23, 49, 108)!default;
+$gplus-color:      rgb(194, 10, 8)!default;
+$twitter-color:    rgb(21, 193, 225)!default;
+$whatsapp-color:   rgb(100, 212, 72)!default;
+
+
+
+
+
+// -------------------------------------
+//   $UI-ELEMENTS
+// -------------------------------------
+
+$base-border:                1px solid $base-ui-color!default;
+$base-round:                 4px!default;
+$box-shadow:                 0 0 10px $shadow-color!default;
+$box-shaddow--bottom:        0 7px 7px -6px $shadow-color!default;
+$box-shaddow--left:          -7px 0 7px -6px $shadow-color!default;
+$box-shaddow--right:         7px 0 7px -6px $shadow-color!default;
+$box-shaddow--top:           0 -7px 7px -6px $shadow-color!default;
+$box-shadow--inset:          inset 0 0 10px $shadow-color!default;
+$box-shadow--inset--bottom:  inset 0 -7px 7px -6px $shadow-color!default;
+$box-shadow--inset--left:  inset 7px 0 7px -6px $shadow-color!default;
+$box-shadow--inset--right:  inset -7px 0 7px -6px $shadow-color!default;
+$box-shadow--inset--top:  inset 0 7px 7px -6px $shadow-color!default;
+
+
+
+
+
+// -------------------------------------
+//   $LAYOUT
+// -------------------------------------
+
+$max-width:1280px;
+$min-width:600px;
+$sidebar-width:348px;
+$article-sidebar-width:140px;
+
+
+
+
+
+// -------------------------------------
+//   $BREAK POINTS
+// -------------------------------------
+
+$MQs:true!default;
+
+
+// ----- Variables ----- //
+
+$m-start:        728px!default;   //min-width of medium breakpoint
+$l-start:        1009px!default;  //min-width of large breakpoint
+$xl-start:       1150px!default;  //min-width of extra-large breakpoint
+
+
+// ----- Constants ----- //
+
+$s-end:          $m-start - 1px;
+$m-end:          $l-start - 1px;
+
+
+// ----- List of breakpoint names ----- //
+// Needed for responsive mixins.
+$BPs: "s-and-m", "s", "m", "l", "xl" !default;
+
+
+
+
+
+// -------------------------------------
+//   $ANIMATIONS
+// -------------------------------------
+// Set durations, easings etc. as variables for consistency
+$base-animation-timing:     500ms;
+$short-animation-timing:    300ms;
+
+
+
+
+// -------------------------------------
+//   $Z-INDEXES
+// -------------------------------------
+// Set z-indexes as variables and assign only them
+// to allow for an easy visual impression of the 
+// stacking order
+// Sorted by stacking order, not alphabetized.
+
+$z-promo:                             1000000010;
+$z-mh:                                1000000000;
+  $z-mh__wrapper:                                   10;
+  $z-mh__menu:                                       9;
+$z-social:                             100000000;
+$z-l-wrapper--b:                               0;
+  $z-l-wrapper--b__before:                          -1;
+
+
+
+
+// -------------------------------------
+//   $PERSPECTIVES
+// -------------------------------------
+// Set perspective for 3d transforms
+
+$persp--a: 200px;
+$persp--b: 500px;
